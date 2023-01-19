@@ -13,7 +13,11 @@ const divideButton = document.getElementById('divide');
 const equalsButton = document.getElementById('equals');
 const clearButton = document.getElementById('clear');
 const decButton = document.getElementById('dec');
+const percButton = document.getElementById('percentage');
+const negButton = document.getElementById('neg');
 
+negButton.addEventListener('click', () => neg())
+percButton.addEventListener('click', () => percentage())
 decButton.addEventListener('click', () => dec())
 addButton.addEventListener('click', () => add())
 minusButton.addEventListener('click', () => subtract())
@@ -24,6 +28,7 @@ clearButton.addEventListener('click', () => clear())
 numberButtons.forEach((button) =>
   button.addEventListener('click', () => appendNumber(button.textContent))
 );
+
 function appendNumber(number) {
     if (displayScreen.textContent === '0' || shouldResetScreen)
     resetScreen()
@@ -33,9 +38,20 @@ function resetScreen() {
     displayScreen.textContent = '';
     shouldResetScreen = false
   }
+function percentage(){
+  first = displayScreen.textContent/100;
+  displayScreen.textContent += '%';
+  resetScreen();
+  op = '*';
+  
+}
+function neg(){
+  displayScreen.textContent *= -1;
+
+};
 function dec(){
   displayScreen.textContent += '.';
-}
+};
 function add() {
   if(op == ''){
     first = displayScreen.textContent;
@@ -48,7 +64,7 @@ function add() {
 
 };
 function equals(){
-    let ans = cal(displayScreen.textContent);
+    let ans = cal(displayScreen.textContent).toFixed(2);
     resetScreen();
     displayScreen.textContent += ans;
     op = '';
