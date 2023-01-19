@@ -12,7 +12,9 @@ const multiplyButton = document.getElementById('multiply');
 const divideButton = document.getElementById('divide');
 const equalsButton = document.getElementById('equals');
 const clearButton = document.getElementById('clear');
+const decButton = document.getElementById('dec');
 
+decButton.addEventListener('click', () => dec())
 addButton.addEventListener('click', () => add())
 minusButton.addEventListener('click', () => subtract())
 multiplyButton.addEventListener('click', () => multiply())
@@ -31,6 +33,9 @@ function resetScreen() {
     displayScreen.textContent = '';
     shouldResetScreen = false
   }
+function dec(){
+  displayScreen.textContent += '.';
+}
 function add() {
   if(op == ''){
     first = displayScreen.textContent;
@@ -46,6 +51,7 @@ function equals(){
     let ans = cal(displayScreen.textContent);
     resetScreen();
     displayScreen.textContent += ans;
+    op = '';
 }
 
 function subtract() {
@@ -79,16 +85,16 @@ function divide(){
 };
 function cal(num){
   if(op === '+'){
-    return parseInt(first)+ parseInt(num);
+    return parseFloat(first)+ parseFloat(num);
   }
   else if(op === '-'){
-    return parseInt(first) - parseInt(num);
+    return parseFloat(first) - parseFloat(num);
   }
   else if(op === '/'){
-    return parseInt(first)/parseInt(num);
+    return parseFloat(first)/parseFloat(num);
   }
   else if(op === '*'){
-    return parseInt(first)*parseInt(num);
+    return parseFloat(first)*parseFloat(num);
   }
   
 };
