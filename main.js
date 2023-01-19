@@ -50,7 +50,10 @@ function neg(){
 
 };
 function dec(){
-  displayScreen.textContent += '.';
+  if (!displayScreen.textContent.includes('.')){
+    displayScreen.textContent += '.';
+  }
+  
 };
 function add() {
   if(op == ''){
